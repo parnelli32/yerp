@@ -51,18 +51,91 @@ get.member <- function(member_id) {
     
     path <- raw.member$results[[1]]$roles[i][[1]]
     
-    chamber[i] <- path$chamber
-    state[i] <- path$state
-    district[i] <- path$district
-    seniority[i] <- path$seniority
-    dwnom[i] <- path$dw_nominate
-    total.votes[i] <- path$total_votes
-    missed.votes[i] <- path$missed_votes
-    missed.pct[i] <- path$missed_votes_pct
-    sponsored[i] <- path$bills_sponsored
-    cosponsored[i] <- path$bills_cosponsored
-    with.party[i] <- path$votes_with_party
-    against.party[i] <- path$votes_against_party
+### Congressional Chamber    
+    if (length(path$chamber) == 0) {
+      chamber[i] <- "NULL"
+    } else {
+      chamber[i] <- path$chamber
+    }
+    
+### State    
+    if (length(path$state) == 0) {
+      state[i] <- "NULL"
+    } else {
+      state[i] <- path$state
+    }
+    
+### Federal State District Number
+    if (length(path$district) == 0) {
+      district[i] <- "NULL"
+    } else {
+      district[i] <- path$district
+    }
+    
+### Seniority Position 
+    if (length(path$seniority) == 0) {
+      seniority[i] <- "NULL"
+    } else {
+      seniority[i] <- path$seniority
+    }
+    
+### DW_NOMINATE Score    
+    if (length(path$dw_nominate) == 0) {
+      dwnom[i] <- "NULL"
+    } else {
+      dwnom[i] <- path$dw_nominate
+    }
+    
+### Number of Total Votes
+    if (length(path$total_votes) == 0) {
+      total.votes[i] <- "NULL"
+    } else {
+      total.votes[i] <- path$total_votes
+    }
+    
+### Number of Missed Votes
+    if (length(path$missed_votes) == 0) {
+      missed.votes[i] <- "NULL"
+    } else {
+      missed.votes[i] <- path$missed_votes
+    }
+    
+### Percentage of Votes Missed
+    if (length(path$missed_votes_pct) == 0) {
+      missed.pct[i] <- "NULL"
+    } else {
+      missed.pct[i] <- path$missed_votes_pct
+    }
+    
+### Number of Bills Sponsored    
+    if (length(path$bills_sponsored) == 0) {
+      sponsored[i] <- "NULL"
+    } else {
+      sponsored[i] <- path$bills_sponsored
+    }
+    
+### Number of Bills Cosponsored       
+    if (length(path$bills_cosponsored) == 0) {
+      cosponsored[i] <- "NULL"
+    } else {
+      cosponsored[i] <- path$bills_cosponsored
+    }
+    
+### Percent of Votes Cast With the Party    
+    if (length(path$votes_with_party) == 0) {
+      with.party[i] <- "NULL"
+    } else {
+      with.party[i] <- path$votes_with_party
+    }
+    
+### Percent of Votes Cast Against the Party    
+    if (length(path$votes_against_party) == 0) {
+      against.party[i] <- "NULL"
+    } else {
+      against.party[i] <- path$votes_against_party
+    }
+    
+### Leadership Role    
     if (length(path$leadership_role) == 0) {
       leadership[i] <- "NULL"
     } else {
