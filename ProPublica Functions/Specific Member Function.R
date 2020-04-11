@@ -78,8 +78,6 @@ get.member <- function(member_id) {
   print(paste("Last Update:", last.update))
   
   member.table <- data.frame(congress, chamber, state, district, leadership, dwnom, total.votes, missed.votes, missed.pct, sponsored, cosponsored, against.party, with.party)
-                             ###, state, district, leadership, seniority, dwnom, total.votes, missed.votes, missed_pct, sponsored, cosponsored, against.party, with.party )
-  
   return(member.table)
 }
  
