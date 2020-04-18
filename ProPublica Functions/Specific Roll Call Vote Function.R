@@ -10,7 +10,7 @@ endpoint.recent <- "/votes/recent.json"
 
 get.rollcall <- function(congress, chamber, session, roll_call) {
   
-  raw.vote <- GET(url = paste0(base.url, congress, "/", chamber, "/sessions/", session, "/votes/", roll_call, ".json"), add_headers('X-API-Key' = apipassword))
+  raw.vote <- GET(url = paste0(base.url, as.character(congress), "/", chamber, "/sessions/", as.character(session), "/votes/", as.character(roll_call), ".json"), add_headers('X-API-Key' = apipassword))
   raw.vote <- jsonlite::fromJSON(content(raw.vote, "text"), simplifyVector = TRUE)
   
   
@@ -37,7 +37,7 @@ get.rollcall <- function(congress, chamber, session, roll_call) {
   raw.vote.table <- raw.vote$results$votes$vote$positions 
   
   ###raw.list <- c(date, question, description, result, total.yes, total.no, total.not_voting, dem.position, dem.yes, dem.no, dem.not_voting, rep.position, rep.yes, rep.no, rep.not_voting)
-  raw.list <- list(date = date, question = question, description = description, result = result, total.yes = total.yes, total.no = total.no, total.not_voting = total.not_voting, dem.position = dem.position, dem.yes = dem.yes, dem.no = dem.no, dem.not_voting = dem.not_voting, rep.position = rep.position, rep.yes = rep.yes, rep.no = rep.no, rep.not_voting = rep.not_voting)
+  raw.list <- list(congress = congress, chamber = chamber, session = session, roll_call = roll_call, date = date, question = question, description = description, result = result, total.yes = total.yes, total.no = total.no, total.not_voting = total.not_voting, dem.position = dem.position, dem.yes = dem.yes, dem.no = dem.no, dem.not_voting = dem.not_voting, rep.position = rep.position, rep.yes = rep.yes, rep.no = rep.no, rep.not_voting = rep.not_voting)
   class(raw.list) <- "raw.list"
   
 ### Create class "get.rollcall" in order to structure the returned ovject to my liking  
