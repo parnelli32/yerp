@@ -12,7 +12,7 @@ get.rollcall <- function(congress, chamber, session, roll_call) {
   
   raw.vote <- GET(url = paste0(base.url, congress, "/", chamber, "/sessions/", session, "/votes/", roll_call, ".json"), add_headers('X-API-Key' = apipassword))
   raw.vote <- jsonlite::fromJSON(content(raw.vote, "text"), simplifyVector = TRUE)
-  raw.vote.table <- raw.vote$results$votes$vote$positions
+  
   
   date <- raw.vote$results$votes$vote$date
   question <- raw.vote$results$votes$vote$question_text
@@ -30,15 +30,19 @@ get.rollcall <- function(congress, chamber, session, roll_call) {
   dem.position <- raw.vote$results$votes$vote$democratic$majority_position
   result <- raw.vote$results$votes$vote$result
   
-  ###   Print additional interesting / pertinent situation  
-  print(date)
-  print(question)
-  print(description)
-  print(result)
-  print(paste("Dem. Majority Position:", dem.position, ", Yes =", dem.yes, "No =", dem.no, "Not Voting =", dem.not_voting))
-  print(paste("Rep. Majority Position:", rep.position, ", Yes =", rep.yes, "No =", rep.no, "Not Voting =", rep.not_voting))
-  print(paste("Total Votes: Yes =", total.yes, "No =", total.no, "Not Voting =", total.not_voting))
+### Print additional interesting / pertinent situation
+  print(paste0(date, " : ", result, " : ", question))
   
+### Build list of objects to be returned  
+  raw.vote.table <- raw.vote$results$votes$vote$positions 
   
-  return(raw.vote.table)
+  ###raw.list <- c(date, question, description, result, total.yes, total.no, total.not_voting, dem.position, dem.yes, dem.no, dem.not_voting, rep.position, rep.yes, rep.no, rep.not_voting)
+  raw.list <- list(date = date, question = question, description = description, result = result, total.yes = total.yes, total.no = total.no, total.not_voting = total.not_voting, dem.position = dem.position, dem.yes = dem.yes, dem.no = dem.no, dem.not_voting = dem.not_voting, rep.position = rep.position, rep.yes = rep.yes, rep.no = rep.no, rep.not_voting = rep.not_voting)
+  class(raw.list) <- "raw.list"
+  
+### Create class "get.rollcall" in order to structure the returned ovject to my liking  
+  value <- list(vote.data = raw.list, positions = raw.vote.table)
+  attr(value, "class") <- "get.rollcall"
+  
+  return(value)
 }
