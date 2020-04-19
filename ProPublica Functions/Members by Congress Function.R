@@ -10,7 +10,7 @@ endpoint.recent <- "/votes/recent.json"
 
 member.list <- function(congress, chamber) {
   
-  raw.list <- GET(url = paste0(base.url, congress, "/", chamber, "/members.json"), add_headers('X-API-Key' = apipassword))
+  raw.list <- GET(url = paste0(base.url, as.character(congress), "/", chamber, "/members.json"), add_headers('X-API-Key' = apipassword))
   raw.list <- jsonlite::fromJSON(content(raw.list, "text"), simplifyVector = FALSE)
   
   for (i in 1:length(raw.list$results[[1]]$members)) {
@@ -228,9 +228,7 @@ member.list <- function(congress, chamber) {
   ### Build data frame from the chosen variables and assign it to the global variables   
   member.congress.table <- data.frame(id, chamber.name, party, state, last_name, first_name, gender, next_election, dwnom, total_votes, missed_votes, missed_pct, with.party, against.party)
   
-  print(chamber)
-  print(congress)
-  print(paste0("Total Members: ", raw.list$results[[1]]$num_results))  
+  print(paste0("Chamber: ", chamber, "-", congress, " ; Total Members: ", raw.list$results[[1]]$num_results))
   
   return(member.congress.table)
   
