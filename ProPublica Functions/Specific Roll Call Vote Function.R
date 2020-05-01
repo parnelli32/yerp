@@ -1,14 +1,13 @@
-### Set-up
-library(httr)
-
-### Make variables for API Key and GET flexibility
-apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
-base.url <- "https://api.propublica.org/congress/v1/"
-endpoint.recent <- "/votes/recent.json"
-
 ### Build a function that pulls the roll-call reuslts by member for specific votes/bills 
-
 get.rollcall <- function(congress, chamber, session, roll_call) {
+  
+### Set-up
+  require(httr)
+  
+### Make variables for API Key and GET flexibility
+  apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
+  base.url <- "https://api.propublica.org/congress/v1/"
+  endpoint.recent <- "/votes/recent.json"
   
   raw.vote <- GET(url = paste0(base.url, as.character(congress), "/", chamber, "/sessions/", as.character(session), "/votes/", as.character(roll_call), ".json"), add_headers('X-API-Key' = apipassword))
   raw.vote <- jsonlite::fromJSON(content(raw.vote, "text"), simplifyVector = TRUE)

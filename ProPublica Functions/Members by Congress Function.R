@@ -1,14 +1,14 @@
-### Set-up
-library(httr)
-
-### Make variables for API Key and GET flexibility
-apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
-base.url <- "https://api.propublica.org/congress/v1/"
-endpoint.recent <- "/votes/recent.json"
-
 ### Build a function that pulls member records by Congress and Chamber
-
 member.list <- function(congress, chamber) {
+  
+### Set-up
+  require(httr)
+  
+### Make variables for API Key and GET flexibility
+  apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
+  base.url <- "https://api.propublica.org/congress/v1/"
+  endpoint.recent <- "/votes/recent.json"
+  
   
   raw.list <- GET(url = paste0(base.url, as.character(congress), "/", chamber, "/members.json"), add_headers('X-API-Key' = apipassword))
   raw.list <- jsonlite::fromJSON(content(raw.list, "text"), simplifyVector = FALSE)

@@ -1,13 +1,13 @@
-### Set-up
-library(httr)
-
-### Make variables for API Key and GET flexibility
-apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
-base.url <- "https://api.propublica.org/congress/v1/"
-endpoint.recent <- "/votes/recent.json"
-
 ### Build a function that lists all the votes a member has been involved in and those votes' results
 member.record <- function(member_id) {
+  
+### Set-up
+  require(httr)
+  
+### Make variables for API Key and GET flexibility
+  apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
+  base.url <- "https://api.propublica.org/congress/v1/"
+  endpoint.recent <- "/votes/recent.json"  
   
   raw.record <- GET(url = paste0(base.url, "members/", member_id, "/votes.json"), add_headers('X-API-Key' = apipassword))
   raw.record <- jsonlite::fromJSON(content(raw.record, "text"), simplifyVector = FALSE)

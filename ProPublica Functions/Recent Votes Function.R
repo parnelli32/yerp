@@ -1,15 +1,15 @@
-### Set-up
-library(httr)
-
-### Make variables for API Key and GET flexibility
-apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
-base.url <- "https://api.propublica.org/congress/v1/"
-endpoint.recent <- "/votes/recent.json"
-
 ######## Builds function that returns the most recent 20 roll calls voted on in the designated chamber or chambers          
 
 ### Sets the default value as "both"
 recent.votes <- function (x = getOption(x = "senate", default = "both")) {
+  
+### Set-up
+  require(httr)
+  
+### Make variables for API Key and GET flexibility
+  apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
+  base.url <- "https://api.propublica.org/congress/v1/"
+  endpoint.recent <- "/votes/recent.json"
   
 ### Pulls data from the ProPublica API in JSON form and converts it into a readable format in r 
   votes.recent <- GET(url = paste0(base.url, x, endpoint.recent), add_headers('X-API-Key' = apipassword))

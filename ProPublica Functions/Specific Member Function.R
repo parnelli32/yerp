@@ -1,15 +1,14 @@
-### Set-up
-library(httr)
-
-### Make variables for API Key and GET flexibility
-apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
-base.url <- "https://api.propublica.org/congress/v1/"
-endpoint.recent <- "/votes/recent.json"
-
 ### Build a function that pulls the data about members like: 
 ###   (cont'd): DOB, Gender, Social Media Ids, committee and sub-committee assignments by congress
-
 get.member <- function(member_id) {
+  
+### Set-up
+  require(httr)
+  
+### Make variables for API Key and GET flexibility
+  apipassword <- "yTTZFL3TzrNAOE81ZdDmDihMXnpx5JUvrn2ntbvd"
+  base.url <- "https://api.propublica.org/congress/v1/"
+  endpoint.recent <- "/votes/recent.json"
   
   raw.member <- GET(url = paste0(base.url, "members/", member_id, ".json"), add_headers('X-API-Key' = apipassword))
   raw.member <- jsonlite::fromJSON(content(raw.member, "text"), simplifyVector = FALSE)
