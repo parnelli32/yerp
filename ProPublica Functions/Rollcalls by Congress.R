@@ -23,7 +23,7 @@ rc.record <- function(congress, chamber) {
   m <- 1
   holder.1 <- c() 
   repeat {
-    sesh.1 <- get.rollcall(congress = 114, chamber = "senate", session = 1, roll_call = m)
+    sesh.1 <- get.rollcall(as.character(congress), chamber, session = 1, roll_call = m)
     if (is.null(sesh.1$positions)) {
       break
     } else {
