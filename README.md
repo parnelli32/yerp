@@ -16,5 +16,8 @@ exam5_recent <- recent.votes("house")
 # Get voting record of a Specific Legislator and the results of those votes
 exam6_member <- member.record("B001277")
 
-# Get list of legilsators by congress and chamber
+# Get list of legislators by congress and chamber
 exam7_congress <- member.list(congress = 116, chamber = "senate")
+
+# Get list of rollcalls by congress
+exam8_congress <- rc.record(congress = 116, chamber = "senate")
