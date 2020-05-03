@@ -35,12 +35,11 @@ get.rollcall <- function(congress, chamber, session, roll_call) {
 ### Build list of objects to be returned  
   raw.vote.table <- raw.vote$results$votes$vote$positions 
   
-  ###raw.list <- c(date, question, description, result, total.yes, total.no, total.not_voting, dem.position, dem.yes, dem.no, dem.not_voting, rep.position, rep.yes, rep.no, rep.not_voting)
-  raw.list <- list(congress = congress, chamber = chamber, session = session, roll_call = roll_call, date = date, question = question, description = description, result = result, total.yes = total.yes, total.no = total.no, total.not_voting = total.not_voting, dem.position = dem.position, dem.yes = dem.yes, dem.no = dem.no, dem.not_voting = dem.not_voting, rep.position = rep.position, rep.yes = rep.yes, rep.no = rep.no, rep.not_voting = rep.not_voting)
-  class(raw.list) <- "raw.list"
+  rollcall.results <- list(congress = congress, chamber = chamber, session = session, roll_call = roll_call, date = date, question = question, description = description, result = result, total.yes = total.yes, total.no = total.no, total.not_voting = total.not_voting, dem.position = dem.position, dem.yes = dem.yes, dem.no = dem.no, dem.not_voting = dem.not_voting, rep.position = rep.position, rep.yes = rep.yes, rep.no = rep.no, rep.not_voting = rep.not_voting)
+  class(rollcall.results) <- "rollcall.results"
   
 ### Create class "get.rollcall" in order to structure the returned ovject to my liking  
-  value <- list(vote.data = raw.list, positions = raw.vote.table)
+  value <- list(vote.data = rollcall.results, positions = raw.vote.table)
   attr(value, "class") <- "get.rollcall"
   
   return(value)
