@@ -149,7 +149,18 @@ get.member <- function(member_id) {
   print(paste("Most Recent Vote:", recent))
   print(paste("Last Update:", last.update))
   
+### Build list of objects to be returned  
   member.table <- data.frame(congress, chamber, state, district, leadership, dwnom, total.votes, missed.votes, missed.pct, sponsored, cosponsored, against.party, with.party)
-  return(member.table)
+  
+  member.data <- list(firt_name = first, last_name = last, party = current.party, gender = gender,
+                            id.icpsr = icpsr, id.govtrack = govtrack, id.cspan = cspan, 
+                            id.votesmart = votesmart, last.vote = recent, last.update = last.update)
+  class(member.data) <- "member.data"
+  
+### Create class "get.rollcall" in order to structure the returned ovject to my liking  
+  value <- list(background = member.data, summary = member.table)
+  attr(value, "class") <- "get.member"
+
+  return(value)
 }
  
