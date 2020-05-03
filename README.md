@@ -19,7 +19,7 @@ exam3_recent <- recent.votes("both")
 exam4_recent <- recent.votes("senate")
 exam5_recent <- recent.votes("house")
 
-# Get voting record of a Specific Legislator and the results of those votes
+# Get the 20 most recent votes by a Specific Legislator and the results of those votes
 exam6_member <- member.record("B001277")
 
 # Get list of legislators by congress and chamber
