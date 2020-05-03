@@ -1,6 +1,12 @@
 # yerp
 
 # Pro Publica Raw Data User Functions
+source("ProPublica Functions/Members by Congress Function.R")
+source("ProPublica Functions/Recent Member Positions Function.R")
+source("ProPublica Functions/Recent Votes Function.R")
+source("ProPublica Functions/Rollcalls by Congress.R")
+source("ProPublica Functions/Specific Member Function.R")
+source("ProPublica Functions/Specific Roll Call Vote Function.R")
 
 # Get a Specific Roll Call Vote
 exam1_vote <- get.rollcall(congress = 116, chamber = "senate", session = 2, roll_call = 80)
