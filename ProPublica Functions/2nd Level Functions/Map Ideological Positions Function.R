@@ -44,15 +44,15 @@ elite.map <- function(congress, chamber, dimes) {
 ### using that matrix
   ###library(pscl)
   blah <- data.matrix(rollcall.pinpoint[7:length(rollcall.pinpoint)])
-  good.job <- rollcall(blah, yea = 1, nay = 5, missing = 9, notInLegis = 0, 
+  rc.pinpoint <<- rollcall(blah, yea = 1, nay = 5, missing = 9, notInLegis = 0, 
                        legis.names = rollcall.pinpoint$last.name, legis.data = rollcall.pinpoint[3:5])
   
 ### Run the W-Nominate Algorithm. Print the summary of, plot, and return the result
   ###library(wnominate)
-  result <- wnominate(good.job, polarity = c(1,1), dims = as.numeric(dimes), verbose = TRUE)
-  summary(result)
-  plot(result)
-  return(result)
+  result.pinpoint <- wnominate(rc.pinpoint, polarity = c(1,1), dims = as.numeric(dimes), verbose = TRUE)
+  summary(result.pinpoint)
+  plot(result.pinpoint)
+  return(result.pinpoint)
 }
 
 
