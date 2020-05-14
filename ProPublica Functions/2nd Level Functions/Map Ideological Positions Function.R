@@ -49,7 +49,7 @@ elite.map <- function(congress, chamber, dimes) {
   
 ### Run the W-Nominate Algorithm. Print the summary of, plot, and return the result
   ###library(wnominate)
-  result.pinpoint <- wnominate(rc.pinpoint, polarity = c(1,1), dims = as.numeric(dimes), verbose = TRUE)
+  result.pinpoint <- wnominate(rc.pinpoint, polarity = c(1,1,1,1), dims = as.numeric(dimes), verbose = TRUE)
   summary(result.pinpoint)
   plot(result.pinpoint)
   return(result.pinpoint)
