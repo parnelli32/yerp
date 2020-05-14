@@ -1,0 +1,48 @@
+TITLE:
+model 1 with 3 classes
+DATA:
+FILE = "data_0262d8943f3c0204d5d0e84cd922629f.dat";
+ 
+VARIABLE:
+NAMES = X1 X2 X3; 
+ MISSING=.;
+ CLASSES = c1(3);
+
+ANALYSIS:
+TYPE = mixture;
+
+MODEL:
+%c1#1%
+X1 (vX1);
+X2 (vX2);
+X3 (vX3);
+
+X1 WITH X2@0;
+X1 WITH X3@0;
+X2 WITH X3@0;
+
+%c1#2%
+X1 (vX1);
+X2 (vX2);
+X3 (vX3);
+
+X1 WITH X2@0;
+X1 WITH X3@0;
+X2 WITH X3@0;
+
+%c1#3%
+X1 (vX1);
+X2 (vX2);
+X3 (vX3);
+
+X1 WITH X2@0;
+X1 WITH X3@0;
+X2 WITH X3@0;
+
+
+OUTPUT:
+TECH14;
+
+SAVEDATA:
+FILE IS model_1_class_3.dat;
+SAVE = cprobabilities;
