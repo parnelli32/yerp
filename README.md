@@ -7,6 +7,7 @@ source("ProPublica Functions/Recent Votes Function.R")
 source("ProPublica Functions/Rollcalls by Congress.R")
 source("ProPublica Functions/Specific Member Function.R")
 source("ProPublica Functions/Specific Roll Call Vote Function.R")
+source("ProPublica Functions/2nd Level Functios/Map Ideological Positions Function.R")
 
 # Get a Specific Roll Call Vote
 exam1_vote <- get.rollcall(congress = 116, chamber = "senate", session = 2, roll_call = 80)
@@ -27,3 +28,7 @@ exam7_congress <- member.list(congress = 116, chamber = "senate")
 
 # Get list of rollcalls by congress
 exam8_congress <- rc.record(congress = 116, chamber = "senate")
+
+# Spatially Map Legislator Ideological Positions
+exam9_pinpoint <- elite.map(congress = 115, chamber = "senate", dimes = 2)
+
