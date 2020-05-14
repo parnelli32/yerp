@@ -44,15 +44,23 @@ elite.map <- function(congress, chamber, dimes) {
 ### using that matrix
   ###library(pscl)
   blah <- data.matrix(rollcall.pinpoint[7:length(rollcall.pinpoint)])
-  rc.pinpoint <<- rollcall(blah, yea = 1, nay = 5, missing = 9, notInLegis = 0, 
+  rc.pinpoint <- rollcall(blah, yea = 1, nay = 5, missing = 9, notInLegis = 0, 
                        legis.names = rollcall.pinpoint$last.name, legis.data = rollcall.pinpoint[3:5])
+  
+### Adjust polarity length based on number of dimensions (dimes)
+  left.right <- rep(1, as.numeric(dimes))
   
 ### Run the W-Nominate Algorithm. Print the summary of, plot, and return the result
   ###library(wnominate)
-  result.pinpoint <- wnominate(rc.pinpoint, polarity = c(1,1,1,1), dims = as.numeric(dimes), verbose = TRUE)
+  result.pinpoint <- wnominate(rc.pinpoint, polarity = left.right, dims = as.numeric(dimes), verbose = TRUE)
   summary(result.pinpoint)
   plot(result.pinpoint)
-  return(result.pinpoint)
+  
+### Create class "elite.map" in order to structure the wnominate and rollcall objects
+  value <- list(wnom = result.pinpoint, pinpoint = rc.pinpoint)
+  attr(value, "class") <- "elite.map"
+  
+  return(value)
 }
 
 
