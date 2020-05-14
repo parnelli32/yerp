@@ -36,4 +36,4 @@ exam8_congress <- rc.record(congress = 116, chamber = "senate")
 
 # Spatially Map Legislator Ideological Positions
 exam9_pinpoint <- elite.map(congress = 115, chamber = "senate", dimes = 4)
-
+plot(exam9_pinpoint$wnom)
