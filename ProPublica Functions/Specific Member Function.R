@@ -152,7 +152,7 @@ get.member <- function(member_id) {
 ### Build list of objects to be returned  
   member.table <- data.frame(congress, chamber, state, district, leadership, dwnom, total.votes, missed.votes, missed.pct, sponsored, cosponsored, against.party, with.party)
   
-  member.data <- list(firt_name = first, last_name = last, party = current.party, gender = gender,
+  member.data <- list(first_name = first, last_name = last, party = current.party, gender = gender,
                             id.icpsr = icpsr, id.govtrack = govtrack, id.cspan = cspan, 
                             id.votesmart = votesmart, last.vote = recent, last.update = last.update)
   class(member.data) <- "member.data"
