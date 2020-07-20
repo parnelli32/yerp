@@ -9,13 +9,13 @@ elite.map <- function(congress, chamber, dimes) {
   require(wnominate)
   
 ### Pull raw votes from congressional chamber by congress, let's just call it PinPoint
-  pinpoint <- rc.record(as.character(congress), chamber = chamber)
+  pinpoint <- rc.record(congress = as.character(congress), chamber = as.character(chamber))
   for (i in 1:length(pinpoint)) {
     names(pinpoint)[[i]] <- paste0("rc",i)
   }
   
 ### Generate list of unique members who participated in PinPoint
-  members.pinpoint <- member.list(as.character(congress), chamber = chamber) 
+  members.pinpoint <- member.list(congress = as.character(congress), chamber = as.character(chamber)) 
   
 ### Create data frame to enter into the rollcall object and add new columns to hold the new votes
   rollcall.pinpoint <- data.frame(members.pinpoint$last_name, members.pinpoint$first_name, 

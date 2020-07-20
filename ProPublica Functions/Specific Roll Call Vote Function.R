@@ -9,7 +9,7 @@ get.rollcall <- function(congress, chamber, session, roll_call) {
   base.url <- "https://api.propublica.org/congress/v1/"
   endpoint.recent <- "/votes/recent.json"
   
-  raw.vote <- GET(url = paste0(base.url, as.character(congress), "/", chamber, "/sessions/", as.character(session), "/votes/", as.character(roll_call), ".json"), add_headers('X-API-Key' = apipassword))
+  raw.vote <- GET(url = paste0(base.url, as.character(congress), "/", as.character(chamber), "/sessions/", as.character(session), "/votes/", as.character(roll_call), ".json"), add_headers('X-API-Key' = apipassword))
   raw.vote <- jsonlite::fromJSON(content(raw.vote, "text"), simplifyVector = TRUE)
   
   

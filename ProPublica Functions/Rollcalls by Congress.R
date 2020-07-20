@@ -9,7 +9,7 @@ rc.record <- function(congress, chamber) {
   n <- 1
   holder.2 <- c() 
   repeat {
-    sesh.2 <- get.rollcall(as.character(congress), chamber, session = 2, roll_call = n)
+    sesh.2 <- get.rollcall(as.character(congress), as.character(chamber), session = 2, roll_call = n)
     if (is.null(sesh.2$positions)) {
       break
     } else {
@@ -23,7 +23,7 @@ rc.record <- function(congress, chamber) {
   m <- 1
   holder.1 <- c() 
   repeat {
-    sesh.1 <- get.rollcall(as.character(congress), chamber, session = 1, roll_call = m)
+    sesh.1 <- get.rollcall(as.character(congress), as.character(chamber), session = 1, roll_call = m)
     if (is.null(sesh.1$positions)) {
       break
     } else {
